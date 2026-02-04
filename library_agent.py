@@ -308,7 +308,7 @@ class LibraryChatAgent:
         if not students:
             return f"No {title.lower()} found."
         
-        result = f"\n🎓 {title} ({len(students)} found):\n"
+        result = f"\n {title} ({len(students)} found):\n"
         result += "-" * 50 + "\n"
         for s in students:
             result += f"  • {s['name']} (ID: {s['student_id']}, Grade: {s['grade']})\n"
@@ -373,10 +373,10 @@ class LibraryChatAgent:
         if not books:
             return f"No book found matching '{title}'."
         
-        result = f"\n📚 Availability for '{title}':\n"
+        result = f"\n Availability for '{title}':\n"
         result += "-" * 50 + "\n"
         for book in books:
-            status = "✅ Available" if book['available_copies'] > 0 else "❌ Not Available"
+            status = " Available" if book['available_copies'] > 0 else "Not Available"
             result += f"  • {book['title']} by {book['author']}\n"
             result += f"    {status} ({book['available_copies']}/{book['total_copies']} copies)\n"
         return result
@@ -390,8 +390,8 @@ class LibraryChatAgent:
         """Handle queries about overdue books."""
         borrowings = self.db.get_overdue_books()
         if not borrowings:
-            return "✅ No overdue books! All borrowed books are within their due dates."
-        return self._format_borrowings(borrowings, "⚠️ Overdue Books")
+            return "No overdue books! All borrowed books are within their due dates."
+        return self._format_borrowings(borrowings, "Overdue Books")
     
     def _handle_all_students(self, match) -> str:
         """Handle queries for all students."""
@@ -408,14 +408,14 @@ class LibraryChatAgent:
         """Handle queries for library statistics."""
         stats = self.db.get_library_stats()
         
-        result = "\n📊 Library Statistics:\n"
+        result = "\nLibrary Statistics:\n"
         result += "-" * 50 + "\n"
-        result += f"  📚 Total unique books: {stats['total_books']}\n"
-        result += f"  📖 Total copies: {stats['total_copies']}\n"
-        result += f"  ✅ Available copies: {stats['available_copies']}\n"
-        result += f"  📤 Borrowed copies: {stats['borrowed_copies']}\n"
-        result += f"  🎓 Total students: {stats['total_students']}\n"
-        result += f"  📋 Active borrowings: {stats['active_borrowings']}\n"
+        result += f"  Total unique books: {stats['total_books']}\n"
+        result += f"  Total copies: {stats['total_copies']}\n"
+        result += f"  Available copies: {stats['available_copies']}\n"
+        result += f"  Borrowed copies: {stats['borrowed_copies']}\n"
+        result += f"  Total students: {stats['total_students']}\n"
+        result += f"  Active borrowings: {stats['active_borrowings']}\n"
         return result
     
     def _handle_borrowing_history(self, match) -> str:
@@ -459,7 +459,7 @@ Type 'quit' or 'exit' to leave the chat.
     def _handle_unknown(self) -> str:
         """Handle unknown queries."""
         return """
-🤔 I'm not sure how to answer that question.
+I'm not sure how to answer that question.
 
 Try asking things like:
   • "What books are available?"
@@ -474,7 +474,7 @@ Type 'help' for more options.
 def main():
     """Main function to run the chat agent."""
     print("\n" + "=" * 60)
-    print("📚 Welcome to the School Library Chat Agent!")
+    print("Welcome to the School Library Chat Agent!")
     print("=" * 60)
     print("I can help you find books, check borrowings, and more.")
     print("Type 'help' for a list of commands, or 'quit' to exit.")
@@ -492,17 +492,17 @@ def main():
                 continue
             
             if user_input.lower() in ['quit', 'exit', 'bye', 'q']:
-                print("\n👋 Goodbye! Thank you for using the Library Chat Agent.\n")
+                print("\nGoodbye! Thank you for using the Library Chat Agent.\n")
                 break
             
             response = agent.process_query(user_input)
             print(f"\nAgent: {response}")
             
         except KeyboardInterrupt:
-            print("\n\n👋 Goodbye!\n")
+            print("\n\nGoodbye!\n")
             break
         except Exception as e:
-            print(f"\n❌ Error: {str(e)}\n")
+            print(f"\nError: {str(e)}\n")
     
     db.close()
 
