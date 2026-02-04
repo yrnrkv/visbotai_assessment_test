@@ -159,9 +159,9 @@ def run_tests():
     
     print("\n" + "=" * 60)
     if result.wasSuccessful():
-        print("✅ All tests passed!")
+        print("All tests passed!")
     else:
-        print("❌ Some tests failed.")
+        print("Some tests failed.")
     print("=" * 60 + "\n")
     
     return result.wasSuccessful()
