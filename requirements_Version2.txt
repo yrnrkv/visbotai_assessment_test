@@ -1,0 +1,7 @@
+# School Library Chat Agent Requirements
+# No external dependencies required - uses Python standard library only
+
+# The following are optional but can enhance the agent:
+# openai>=1.0.0  # If you want to add LLM-based natural language understanding
+# langchain>=0.1.0  # Alternative agent framework
+# rich>=13.0.0  # For better console output formatting
