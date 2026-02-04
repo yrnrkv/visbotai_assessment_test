@@ -142,7 +142,7 @@ def setup_database(db_path: str = "library.db"):
     conn.commit()
     conn.close()
     
-    print(f"\n✅ Database setup complete! Created: {db_path}")
+    print(f"\n Database setup complete! Created: {db_path}")
     print("\nSummary:")
     print(f"  - {len(books_data)} books")
     print(f"  - {len(students_data)} students")
